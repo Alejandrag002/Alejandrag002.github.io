@@ -155,5 +155,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const siiButton = document.getElementById("yesButton"); // Get the "Sii" button
+    const contactSection = document.querySelector(".contact-section"); // Get the Contact Section
+
+    if (siiButton && contactSection) {
+        siiButton.addEventListener("click", function () {
+            contactSection.style.display = "none"; // Hide the contact section
+        });
+    }
+});
+
+
 
 
