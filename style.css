@@ -1,0 +1,403 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;800&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+body {
+    font-family: 'STIX Two Text', serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #1b4332, #2d6a4f, #74c69d);
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.container {
+    margin-top: 80px; /* Adjust this value as needed */
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Nav Links */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    margin-right: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #a3b18a;
+}
+
+/* Tab Transition Effect */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Content Box */
+.content-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Image Grid */
+.image-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Image Box - Now Displays Image Inside It */
+.image-box {
+    width: 200px;
+    height: 200px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensures image does not overflow */
+    position: relative; /* Required for absolute positioning of image */
+}
+
+/* Make Images Inside the Box Fill the Entire Box */
+.image-box img {
+    width: 100%; /* Image fills the width */
+    height: 100%; /* Image fills the height */
+    object-fit: cover; /* Ensures image fills the box without distortion */
+    position: absolute; /* Ensures proper alignment */
+}
+
+
+
+/* Hover Display */
+.hover-display {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    z-index: 1000;
+}
+
+.hover-display img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        max-width: 90%;
+    }
+}
+
+#questionText {
+    display: none; /* Hide initially */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+/* Pop-up White Box */
+.popup-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+    z-index: 1000;
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Show popup */
+.popup-box.show {
+    display: block;
+    opacity: 1;
+}
+
+
+/* Make the No button move around when hovered */
+#noButton {
+    position: absolute;
+    background-color: rgb(226, 41, 41);
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    font-size: 12px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Full-Screen Confetti Effect */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* Confetti Pieces */
+.confetti {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    opacity: 0.8;
+    border-radius: 50%;
+    animation: fall linear infinite;
+}
+
+/* Keyframes for Falling Confetti */
+@keyframes fall {
+    from {
+        transform: translateY(-10vh) rotate(0deg);
+    }
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+
+/* Button Container */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+/* General Button Styling */
+.btn-group button {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px; /* Softer rounded edges */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    text-transform: capitalize; /* Remove uppercase for a smoother look */
+    letter-spacing: 0.5px;
+}
+
+/* Yes Button - Soft Green */
+#yesButton {
+    background-color: #5BA37E;
+    color: white;
+}
+
+#yesButton:hover {
+    background-color: #4a8b69;
+    box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.2); /* Slight glow effect */
+}
+
+/* No Button - Soft Red */
+#noButton {
+    background-color: #D86C6C;
+    color: white;
+    position: relative;
+}
+
+#noButton:hover {
+    background-color: #C75858;
+    box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.2); /* Slight glow effect */
+}
+
+/* "OH YEAH!" Text */
+.oh-yeah-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Close Button */
+.close-button {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: white;
+    color: #1b3e2f;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+    display: none; /* Hidden initially */
+}
+
+/* Show Close Button after 5 seconds */
+.close-button.show {
+    display: block;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Click to Reveal Button - Elegant Style */
+#revealButton {
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px; /* Smooth rounded edges */
+    background-color: #d9d9d9; /* Elegant neutral tone */
+    color: #2c3e50; /* Dark, classy text */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for elevation */
+    text-transform: capitalize; /* Keep it smooth, not all uppercase */
+    letter-spacing: 0.5px;
+}
+
+/* Hover Effect - Slight Glow */
+#revealButton:hover {
+    background-color: #c0c0c0; /* Slightly darker tone */
+    box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced but soft glow */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Style for the About Section List */
+#about ol {
+    padding-left: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2c3e50;
+}
+
+#about li {
+    margin-bottom: 10px;
+}
+
+/* Small Title Styling */
+.small-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #2c3e50; /* Dark grey for elegance */
+    letter-spacing: 1px;
+}
+
+.homepage-gif {
+    display: block;
+    margin: 20px auto; /* Centers it below the text */
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 10px;
+    animation: fadeIn 5ms ease-in-out;
+}
+
