@@ -473,52 +473,38 @@ body {
     transform: translateY(1px); /* Pressed effect */
 }
 
+/* HAMBURGER MENU STYLE */
 .hamburger {
     display: none;
-    font-size: 26px;
+    font-size: 30px;
     color: white;
     background: none;
     border: none;
     cursor: pointer;
-    margin-right: 20px;
+    z-index: 1001;
 }
 
+/* MOBILE RESPONSIVE NAV */
 @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
     .nav-links {
         display: none;
-        flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.9);
         position: absolute;
         top: 60px;
-        right: 20px;
+        right: 15px;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
         padding: 15px;
+        gap: 10px;
         border-radius: 8px;
-        gap: 15px;
+        z-index: 1000;
     }
 
     .nav-links.active {
         display: flex;
     }
-
-    .hamburger {
-        z-index: 1001; /* Add this */
-        display: block;
-    }
-
-    /* Fix hamburger visibility */
-.hamburger {
-    z-index: 1001;
-    padding: 10px;
-    font-size: 28px;
-    background-color: transparent;
-    color: white;
-    border: none;
-    cursor: pointer;
 }
 
-/* Optional: Add background on hover so it’s more visible */
-.hamburger:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-}
-}
