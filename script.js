@@ -1,6 +1,8 @@
 
 // GLOBALS
 function askQuestion() {
+
+    
     const modal = document.getElementById("chinaQuestionModal");
     const input = document.getElementById("chinaAnswerInput");
     const submitBtn = document.getElementById("submitChinaAnswer");
@@ -162,6 +164,17 @@ document.addEventListener("DOMContentLoaded", function () {
             contactSection.style.display = "none";
         });
     }
+
+    // Hamburger menu toggle
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("navLinks");
+
+if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+}
+
 });
 
 
