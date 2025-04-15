@@ -501,6 +501,24 @@ body {
     }
 
     .hamburger {
+        z-index: 1001; /* Add this */
         display: block;
     }
+
+    /* Fix hamburger visibility */
+.hamburger {
+    z-index: 1001;
+    padding: 10px;
+    font-size: 28px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Optional: Add background on hover so it’s more visible */
+.hamburger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+}
 }
