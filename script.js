@@ -176,10 +176,3 @@ if (hamburger && navLinks) {
 }
 
 });
-
-
-
-
-
-
-
