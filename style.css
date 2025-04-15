@@ -112,7 +112,7 @@ body {
 .image-box {
     width: 200px;
     height: 200px;
-    background: white;
+    background: rgb(255, 255, 255);
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -448,6 +448,31 @@ body {
     color: #2c3e50;
     margin-top: 5px;
 }
+
+#submitChinaAnswer {
+    background-color: #4a8b69; /* Elegant green */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px; /* Smooth, rounded edges */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+#submitChinaAnswer:hover {
+    background-color: #3a6a58; /* Darker green on hover */
+    box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow */
+    transform: translateY(-2px); /* Lifts button slightly */
+}
+
+#submitChinaAnswer:active {
+    background-color: #2e5547; /* Even darker when clicked */
+    transform: translateY(1px); /* Pressed effect */
+}
+
 
 
 
