@@ -174,10 +174,93 @@ document.addEventListener("DOMContentLoaded", function () {
             contactSection.style.display = "none";
         });
     }
-
+    const foodOptions = [
+        "Taco Bell", "Chick-fil-A", "Sushi", "Pizza", "In-N-Out", "Korean BBQ", "Thai Food", "Chipotle", "Fire Wings","Wing Stop", "BWW","Carne Asada Fries", 
+        "Jack in the box", "Panda Express", "Lucky Greek", "Poki", "Subway", "Jersey Mikes", "Chilis", "BJ's", "Texas Road House", 
+        "Olive Garden", "McDonalds", "Ono", "Waba Grill", "Farmer Boys", "Baker's", "Tacos", "Chicken Flautas", "Ice Cream","You're Pretty", "Burger King", "Ono", "Raising Cane's",
+    ];
+    
+    const canvas = document.getElementById("foodWheel");
+    const ctx = canvas?.getContext("2d");
+    const spinButton = document.getElementById("spinButton");
+    const resultText = document.getElementById("resultText");
+    
+    let angle = 0;
+    let isSpinning = false;
+    
+    function drawWheel() {
+        const radius = canvas.width / 2;
+        const angleStep = (2 * Math.PI) / foodOptions.length;
+    
+        for (let i = 0; i < foodOptions.length; i++) {
+            const startAngle = angleStep * i;
+            const endAngle = startAngle + angleStep;
+    
+            ctx.beginPath();
+            ctx.moveTo(radius, radius);
+            ctx.arc(radius, radius, radius, startAngle, endAngle);
+    
+            // Aesthetic two-tone palette
+            const colorA = "#95d5b2"; // mint green
+            const colorB = "#74c69d"; // soft sage
+            ctx.fillStyle = i % 2 === 0 ? colorA : colorB;
+    
+            ctx.fill();
+            ctx.stroke();
+    
+            // Add label
+            ctx.save();
+            ctx.translate(radius, radius);
+            ctx.rotate(startAngle + angleStep / 2);
+            ctx.fillStyle = "#2c3e50"; // match site text
+            ctx.font = "14px 'STIX Two Text', serif";
+            ctx.textAlign = "right";
+            ctx.fillText(foodOptions[i], radius - 10, 5);
+            ctx.restore();
+        }
+    }
+    
+    
+    
+    function spinWheel() {
+        if (isSpinning) return;
+        isSpinning = true;
+    
+        const spinAngle = Math.random() * 360 + 360 * 5;
+        const duration = 4000;
+        const start = performance.now();
+    
+        function animate(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            angle = (spinAngle * progress) * (Math.PI / 180);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(angle);
+            ctx.translate(-canvas.width / 2, -canvas.height / 2);
+            drawWheel();
+            ctx.restore();
+    
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                const index = Math.floor(((2 * Math.PI - (angle % (2 * Math.PI))) / (2 * Math.PI)) * foodOptions.length) % foodOptions.length;
+                resultText.textContent = `We should eat: ${foodOptions[index]} `;
+                isSpinning = false;
+            }
+        }
+    
+        requestAnimationFrame(animate);
+    }
+    
+    if (spinButton) {
+        drawWheel();
+        spinButton.addEventListener("click", spinWheel);
+    }
+    
     
 
 });
-
 
 
