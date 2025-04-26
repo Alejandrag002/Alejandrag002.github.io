@@ -93,7 +93,6 @@ function showNewQuestion() {
 document.addEventListener("DOMContentLoaded", function () {
     showTab("home");
 
-    // Fix NAVIGATION click behavior and insert wall quiz
     document.querySelectorAll(".nav-links a").forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
@@ -105,17 +104,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 showTab(tabId);
             }
         });
+    });
 
         const hamburger = document.getElementById("hamburger");
         const navLinks = document.getElementById("navLinks");
 
         if (hamburger && navLinks) {
-        hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-    });
-}
+            hamburger.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+           });
 
-    });
+   }
+
+    //});
 
     // Image hover 
     document.querySelectorAll(".image-box").forEach(box => {
@@ -262,5 +263,3 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
 });
-
-
